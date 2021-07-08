@@ -15,11 +15,14 @@ edition = "2018"
 [dependencies]
 vte_generate_state_changes = { version = "0.1.0", path = "vte_generate_state_changes" }
 arrayvec = { version = "0.5.1", default-features = false, optional = true }
+log = { version = "0.4", optional = true }
 utf8parse = { version = "0.2.0", path = "utf8parse" }
 
 [features]
-default = ["no_std"]
-no_std = ["arrayvec"]
+ansi = ["log"]
+default = ["no_std", "no_alloc"]
+no_alloc = ["arrayvec", "no_std"]
+no_std = []
 nightly = ["utf8parse/nightly"]
 
 [workspace]
